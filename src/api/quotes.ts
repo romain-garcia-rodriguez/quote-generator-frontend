@@ -5,11 +5,7 @@ const baseUrl = 'https://api.quotable.io'
 const basePath = '/quotes';
 
 export const getRandomQuotes = async () => {
-    try {
-        const response = await axios.get<Quote[]>(`${baseUrl}${basePath}/random`)
+    const response = await axios.get<Quote[]>(`${baseUrl}${basePath}/random`)
 
-        return response.data;
-    } catch(e) {
-        console.log('Error', e)
-    }
+    return response.data;
 }
