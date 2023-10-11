@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import Home from '../pages/Home';
-import Settings from '../pages/Settings';
+import NotFound from '../pages/NotFound';
 
 export const routes: RouteObject[] = [
     {
@@ -8,7 +8,7 @@ export const routes: RouteObject[] = [
       element: <Home />,
     },
     {
-      path: '/settings',
-      element: <Settings />,
+      path: '*',
+      element: <NotFound />,
     },
 ];
