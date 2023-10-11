@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { getRandomQuotes } from "../api/quotes";
 import Button from "../components/Button";
 import QuoteList from "../components/Quotes/QuotesList";
+import Loader from "../components/Loader";
 
 function Home() {
   const { data, isLoading, refetch } = useQuery(
@@ -16,7 +17,9 @@ function Home() {
   return (
     <div className="py-2 px-4">
       <main className="flex h-screen flex-col items-center justify-center">
-        {!isLoading && (
+        {isLoading ? (
+          <Loader />
+        ) : (
           <>
             <QuoteList quotes={data!} />
             <Button
