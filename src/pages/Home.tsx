@@ -1,38 +1,31 @@
-import Button from '../components/Button';
+import { useQuery } from "react-query";
+import { getRandomQuotes } from "../api/quotes";
+import Button from "../components/Button";
 import QuoteList from "../components/Quotes/QuotesList";
 
 function Home() {
+  const { data, isLoading, refetch } = useQuery(
+    "getRandomQuotes",
+    getRandomQuotes
+  );
+
+  const getNewRandomQuotes = async () => {
+    await refetch();
+  };
+
   return (
     <div className="py-2 px-4">
-        <main className="flex h-screen items-center justify-center flex-col">
-        <QuoteList
-            quotes={[
-            {
-                _id: "9-V6Bzl0nfN-",
-                content:
-                "The trouble with most people is that they think with their hopes or fears or wishes rather than with their minds.",
-                author: "Will Durant",
-                tags: ["Famous Quotes"],
-                authorSlug: "will-durant",
-                length: 113,
-                dateAdded: "2021-04-23",
-                dateModified: "2023-04-14",
-            },
-            {
-                _id: "9-V6Bzl0nfN-t",
-                content:
-                "Lorem Ipsum people is that they think with their hopes or fears or wishes rather than with their minds.",
-                author: "Will Smith",
-                tags: ["Famous Quotes"],
-                authorSlug: "will-smith",
-                length: 113,
-                dateAdded: "2021-04-23",
-                dateModified: "2023-04-14",
-            },
-            ]}
-        />
-        <Button content="Get new quotes" />
-        </main>
+      <main className="flex h-screen flex-col items-center justify-center">
+        {!isLoading && (
+          <>
+            <QuoteList quotes={data!} />
+            <Button
+              content="Get new quotes"
+              onBtnClicked={getNewRandomQuotes}
+            />
+          </>
+        )}
+      </main>
     </div>
   );
 }
