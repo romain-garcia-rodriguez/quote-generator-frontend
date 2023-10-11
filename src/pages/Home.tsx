@@ -20,7 +20,7 @@ function Home() {
       const quotes = await getRandomQuotes();
 
       //If no quotes in response, return an empty quotes array
-      if(!quotes.length) {
+      if (!quotes.length) {
         return [];
       }
 
@@ -78,7 +78,9 @@ function Home() {
             {data?.length ? (
               <QuoteList quotes={data} />
             ) : (
-              <h2 className='font-medium md:text-xl mb-4 md:mb-8'>No quotes found, try again</h2>
+              <h2 className="font-medium md:text-xl mb-4 md:mb-8">
+                No quotes found, try again
+              </h2>
             )}
             <Button
               content="Get new quotes"
@@ -87,20 +89,7 @@ function Home() {
           </>
         )}
       </main>
-      {isError && (
-        <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      )}
+      {isError && <ToastContainer />}
     </div>
   );
 }
